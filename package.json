@@ -2,7 +2,7 @@
   "name": "vscode-ext-react-scaffolding",
   "displayName": "React Scaffolding Extension",
   "description": "Scaffold React feature folders and files with a right-click.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "Toughers-uk",
   "repository": {
     "type": "git",
@@ -62,7 +62,8 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
+    "version:bump": "npm version patch --no-git-tag-version",
+    "vscode:prepublish": "npm run version:bump && npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "package": "vsce package"
