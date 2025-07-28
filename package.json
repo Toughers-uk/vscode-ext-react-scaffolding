@@ -3,6 +3,11 @@
   "displayName": "React Scaffolding Extension",
   "description": "Scaffold React feature folders and files with a right-click.",
   "version": "0.0.1",
+  "publisher": "Toughers-uk",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Toughers-uk/vscode-ext-react-scaffolding.git"
+  },
   "engines": {
     "vscode": "^1.80.0"
   },

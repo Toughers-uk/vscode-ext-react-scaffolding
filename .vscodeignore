@@ -1,0 +1,9 @@
+node_modules/
+.vscode/
+src/
+*.ts
+*.ts.map
+test/
+*.log
+*.env
+README.draft.md
