@@ -1,0 +1,75 @@
+{
+  "name": "vscode-ext-react-scaffolding",
+  "displayName": "React Scaffolding Extension",
+  "description": "Scaffold React feature folders and files with a right-click.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "main": "./dist/extension.js",
+  "contributes": {
+    "submenus": [
+      {
+        "id": "extension.scaffoldReact",
+        "label": "Scaffold React...",
+        "icon": "$(symbol-structure)"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "submenu": "extension.scaffoldReact",
+          "when": "explorerResourceIsFolder",
+          "group": "navigation"
+        }
+      ],
+      "extension.scaffoldReact": [
+        {
+          "command": "extension.scaffoldReactFeature",
+          "when": "explorerResourceIsFolder",
+          "group": "1_feature"
+        },
+        {
+          "command": "extension.scaffoldReactFeatureWithPage",
+          "when": "explorerResourceIsFolder",
+          "group": "1_feature"
+        },
+        {
+          "command": "extension.scaffoldReactComponent",
+          "when": "explorerResourceIsFolder",
+          "group": "2_component"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "extension.scaffoldReactFeature",
+        "title": "Feature"
+      },
+      {
+        "command": "extension.scaffoldReactFeatureWithPage",
+        "title": "Feature (w/Page)"
+      },
+      {
+        "command": "extension.scaffoldReactComponent",
+        "title": "Component"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/mustache": "^4.2.6",
+    "@types/node": "^24.1.0",
+    "@types/vscode": "^1.80.0",
+    "typescript": "^5.0.0",
+    "vsce": "^2.15.0"
+  },
+  "dependencies": {
+    "mustache": "^4.2.0"
+  }
+}

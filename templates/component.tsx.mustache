@@ -1,0 +1,13 @@
+import './{{name}}.{{styleExtension}}';
+
+interface {{name}}Props {
+    className?: string;
+}
+
+export function {{name}}({ className = '' }: Readonly<{{name}}Props>) {
+  return (
+    <div className={`${className}`}>
+      {{name}} component
+    </div>
+  );
+};
