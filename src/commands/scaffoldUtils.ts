@@ -15,6 +15,21 @@ const defaultConfig: Config = {
   useIndexFile: false,
 };
 
+function validate(uri: vscode.Uri): boolean {
+  if (!uri || !fs.lstatSync(uri.fsPath).isDirectory()) {
+    vscode.window.showErrorMessage('Please right-click on a folder.');
+    return false;
+  }
+
+  const workspaceFolder = vscode.workspace.getWorkspaceFolder(uri);
+  if (!workspaceFolder) {
+    vscode.window.showErrorMessage('Could not determine workspace root.');
+    return false;
+  }
+
+  return true;
+}
+
 function loadUserConfig(workspacePath: string): Config {
   const configPath = path.join(workspacePath, '.reactscaffoldrc');
   if (fs.existsSync(configPath)) {
@@ -31,18 +46,8 @@ function loadUserConfig(workspacePath: string): Config {
 }
 
 export async function scaffoldReactComponent(uri: vscode.Uri, context: vscode.ExtensionContext) {
-  if (!uri || !fs.lstatSync(uri.fsPath).isDirectory()) {
-    vscode.window.showErrorMessage('Please right-click on a folder.');
-    return;
-  }
-
-  const workspaceFolder = vscode.workspace.getWorkspaceFolder(uri);
-  if (!workspaceFolder) {
-    vscode.window.showErrorMessage('Could not determine workspace root.');
-    return;
-  }
-
-  const config = loadUserConfig(workspaceFolder.uri.fsPath);
+  if (!validate) return;
+  const config = loadUserConfig(vscode.workspace.getWorkspaceFolder(uri)!.uri.fsPath);
 
   const name = await vscode.window.showInputBox({
     prompt: 'Enter component name',
@@ -105,18 +110,8 @@ export async function scaffoldReactFeature(
   context: vscode.ExtensionContext,
   includesPage: boolean = false
 ) {
-  if (!uri || !fs.lstatSync(uri.fsPath).isDirectory()) {
-    vscode.window.showErrorMessage('Please right-click on a folder.');
-    return;
-  }
-
-  const workspaceFolder = vscode.workspace.getWorkspaceFolder(uri);
-  if (!workspaceFolder) {
-    vscode.window.showErrorMessage('Could not determine workspace root.');
-    return;
-  }
-
-  const config = loadUserConfig(workspaceFolder.uri.fsPath);
+  if (!validate) return;
+  const config = loadUserConfig(vscode.workspace.getWorkspaceFolder(uri)!.uri.fsPath);
 
   const name = await vscode.window.showInputBox({
     prompt: 'Enter feature name',
