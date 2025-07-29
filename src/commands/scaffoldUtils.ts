@@ -208,3 +208,47 @@ export async function scaffoldReactFeature(
     `Scaffolded feature: ${name}${includesPage ? ' (w/Page)' : ''}`
   );
 }
+
+export async function scaffoldReactHook(uri: vscode.Uri, context: vscode.ExtensionContext) {
+  let name = await vscode.window.showInputBox({
+    prompt: `Enter hook name (excluding 'use' prefix)`,
+    placeHolder: 'e.g., PermissionsCheck',
+  });
+
+  if (!name) return;
+
+  name = `use${name}`;
+
+  const targetDir = uri.fsPath;
+  const templateDir = path.join(context.extensionPath, 'templates');
+
+  const rendered = mustache.render(
+    fs.readFileSync(path.join(templateDir, 'hook.ts.mustache'), 'utf-8'),
+    { name }
+  );
+
+  let fileName = `${name}.ts`;
+  fs.writeFileSync(path.join(targetDir, fileName), rendered, 'utf-8');
+  vscode.window.showInformationMessage(`Scaffolded hook: ${name}`);
+}
+
+export async function scaffoldReactStoreZustand(uri: vscode.Uri, context: vscode.ExtensionContext) {
+  const name = await vscode.window.showInputBox({
+    prompt: `Enter store name`,
+    placeHolder: 'e.g., auth -> (will result in auth.store.ts)',
+  });
+
+  if (!name) return;
+
+  const targetDir = uri.fsPath;
+  const templateDir = path.join(context.extensionPath, 'templates');
+
+  const rendered = mustache.render(
+    fs.readFileSync(path.join(templateDir, 'store.zustand.ts.mustache'), 'utf-8'),
+    { name: name.charAt(0).toUpperCase() + name.slice(1) }
+  );
+
+  let fileName = `${name}.store.ts`;
+  fs.writeFileSync(path.join(targetDir, fileName), rendered, 'utf-8');
+  vscode.window.showInformationMessage(`Scaffolded store: ${name}`);
+}

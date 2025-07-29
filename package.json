@@ -3,7 +3,7 @@
   "displayName": "React Scaffolding Extension",
   "icon": "icon-256x256.png",
   "description": "Scaffold React feature folders and files with a right-click.",
-  "version": "0.0.5",
+  "version": "0.0.14",
   "publisher": "Toughers-uk",
   "repository": {
     "type": "git",
@@ -19,6 +19,10 @@
         "id": "extension.scaffoldReact",
         "label": "Scaffold React...",
         "icon": "$(symbol-structure)"
+      },
+      {
+        "id": "extension.scaffoldReactStore",
+        "label": "State"
       }
     ],
     "menus": {
@@ -26,24 +30,41 @@
         {
           "submenu": "extension.scaffoldReact",
           "when": "explorerResourceIsFolder",
-          "group": "navigation"
+          "group": "2_workspace@1"
         }
       ],
       "extension.scaffoldReact": [
         {
           "command": "extension.scaffoldReactFeature",
           "when": "explorerResourceIsFolder",
-          "group": "1_feature"
+          "group": "1_feature@1"
         },
         {
           "command": "extension.scaffoldReactFeatureWithPage",
           "when": "explorerResourceIsFolder",
-          "group": "1_feature"
+          "group": "1_feature@2"
         },
         {
           "command": "extension.scaffoldReactComponent",
           "when": "explorerResourceIsFolder",
-          "group": "2_component"
+          "group": "2_component@1"
+        },
+        {
+          "command": "extension.scaffoldReactHook",
+          "when": "explorerResourceIsFolder",
+          "group": "3_hook@1"
+        },
+        {
+          "submenu": "extension.scaffoldReactStore",
+          "when": "explorerResourceIsFolder",
+          "group": "4_store@1"
+        }
+      ],
+      "extension.scaffoldReactStore": [
+        {
+          "command": "extension.scaffoldReactStoreZustand",
+          "when": "explorerResourceIsFolder",
+          "group": "1_store_zustand@1"
         }
       ]
     },
@@ -59,6 +80,14 @@
       {
         "command": "extension.scaffoldReactComponent",
         "title": "Component"
+      },
+      {
+        "command": "extension.scaffoldReactHook",
+        "title": "Hook"
+      },
+      {
+        "command": "extension.scaffoldReactStoreZustand",
+        "title": "Zustand"
       }
     ]
   },
