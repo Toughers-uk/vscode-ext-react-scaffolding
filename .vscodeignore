@@ -1,4 +1,10 @@
+# Exclude all node modules initially
 node_modules/
+
+# Include specific node module dependencies
+!node_modules/mustache/**
+
+# Exclude dev files
 .vscode/
 src/
 *.ts
