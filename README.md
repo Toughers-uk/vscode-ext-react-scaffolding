@@ -1,8 +1,10 @@
 # vscode-ext-react-scaffolding
 
-A VS Code extension designed to help users quickly scaffold features/component file/folder structure
+A VS Code extension designed to help users quickly scaffold features/component file/folder structure.
 
-## Package Extension
+## Packaging & Installation
+
+### Package Extension
 
 Run the below command:
 
@@ -12,7 +14,7 @@ vsce package
 
 This will create a file like `vscode-ext-react-scaffolding-0.0.1.vsix`
 
-NB: The following are required in the `package.json` for the above package command to work
+**NB:** The following are required in the `package.json` for the above package command to work.
 
 ```json
   ...
@@ -24,23 +26,15 @@ NB: The following are required in the `package.json` for the above package comma
   ...
 ```
 
-## Install Extension
+### Install Extension
 
-Install the vsix using one of the following options:
+Install the VSIX using one of the following options:
 
-### Option 1 - CLI
-
-Open a regular VS Code instance and run the command
-
-```ps
-code --install-extension vscode-ext-react-scaffolding-0.0.1.vsix
-```
-
-### Option 2 - UI
+#### Option 1 - UI
 
 Open a regular VS Code instance > Extensions > ... > Install from VSIX > Select `.vsix` file > Reload/Restart VS Code
 
-### Option 3 - Symlink
+#### Option 2 - Symlink
 
 _Use this option for live development while using on local projects_
 
@@ -50,13 +44,7 @@ npm run compile
 code --install-extension vscode-ext-react-scaffolding-0.0.1.vsix
 ```
 
-#### Uninstall
-
-```
-code --uninstall-extension vscode-ext-react-scaffolding-0.0.1.vsix
-```
-
-## Publish Extension
+### Publish Extension
 
 1. [Create a publisher](https://code.visualstudio.com/api/working-with-extensions/publishing-extension)
 2. Use `vsce publish` to push it
