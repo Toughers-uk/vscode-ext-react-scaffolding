@@ -10,7 +10,7 @@ type Config = {
 };
 
 const defaultConfig: Config = {
-  include: ['component', 'css', 'types'],
+  include: [],
   styleExtension: 'css',
   useIndexFile: false,
 };
@@ -185,7 +185,7 @@ export async function scaffoldReactFeature(
       fileName: 'index.ts.mustache',
       folder: rootDir,
     },
-  ];
+  ].filter((template) => config.include.includes(template.type) || config.include.length === 0);
 
   for (const template of templates) {
     if (!fs.existsSync(path.join(templateDir, template.fileName))) continue;

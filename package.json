@@ -3,7 +3,7 @@
   "displayName": "React Scaffolding Extension",
   "icon": "icon-256x256.png",
   "description": "Scaffold React feature folders and files with a right-click.",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "publisher": "Toughers-uk",
   "repository": {
     "type": "git",

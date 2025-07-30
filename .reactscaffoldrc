@@ -1,0 +1,11 @@
+{
+  "include": [
+    "page",
+    "component",
+    "css",
+    "types",
+    "api"
+  ],
+  "styleExtension": "css",
+  "useIndexFile": false
+}
