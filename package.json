@@ -3,7 +3,7 @@
   "displayName": "React Scaffolding Extension",
   "icon": "icon-256x256.png",
   "description": "Scaffold React feature folders and files with a right-click.",
-  "version": "0.0.18",
+  "version": "0.0.20",
   "publisher": "Toughers-uk",
   "repository": {
     "type": "git",
@@ -36,6 +36,10 @@
       "commandPalette": [
         {
           "command": "extension.scaffoldReactSmartWizard",
+          "when": "true"
+        },
+        {
+          "command": "extension.openReactToolbox",
           "when": "true"
         }
       ],
@@ -103,6 +107,10 @@
       {
         "command": "extension.scaffoldReactSmartWizard",
         "title": "Smart Wizard"
+      },
+      {
+        "command": "extension.openReactToolbox",
+        "title": "Open React Toolbox"
       }
     ]
   },

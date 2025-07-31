@@ -1,0 +1,26 @@
+[
+  {
+    "category": "Components",
+    "label": "Simple",
+    "icon": "⚙️",
+    "file": "snippets/components/simple.ts"
+  },
+  {
+    "category": "Functions",
+    "label": "handleChange",
+    "icon": "⚙️",
+    "file": "snippets/functions/handleChange.ts"
+  },
+  {
+    "category": "Hooks",
+    "label": "useEffect",
+    "icon": "⚙️",
+    "file": "snippets/hooks/useEffect.ts"
+  },
+  {
+    "category": "Hooks",
+    "label": "useState",
+    "icon": "⚙️",
+    "file": "snippets/hooks/useState.ts"
+  }
+]
