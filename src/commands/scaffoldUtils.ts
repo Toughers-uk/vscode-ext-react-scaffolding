@@ -62,7 +62,7 @@ export async function scaffoldReactComponent(uri: vscode.Uri, context: vscode.Ex
   }
 
   // Determine which files to include based on config
-  const include = ['component', 'css'];
+  const include = config.include ?? ['component', 'css'];
   if (config.useIndexFile) {
     include.push('index');
   }
@@ -91,13 +91,16 @@ export async function scaffoldReactComponent(uri: vscode.Uri, context: vscode.Ex
     const template = templates.find((temp) => temp.type === kind);
     if (!template) continue;
 
-    const rendered = mustache.render(
+    let rendered = mustache.render(
       fs.readFileSync(path.join(templateDir, template.fileName), 'utf-8'),
       { name, styleExtension: config.styleExtension, type: 'component' }
     );
 
+    if (template.type === 'component' && !include.includes('css'))
+      rendered = rendered.substring(rendered.indexOf('interface'));
+
     let fileName = `${name}.${template.extension}`;
-    if (kind === 'index') fileName = 'index.ts';
+    if (template.type === 'index') fileName = 'index.ts';
 
     fs.writeFileSync(path.join(targetDir, fileName), rendered, 'utf-8');
   }
@@ -192,10 +195,21 @@ export async function scaffoldReactFeature(
     if (!includesPage && template.folder === pagesDir) continue;
     if (includesPage && template.folder === componentsDir) continue;
 
-    const rendered = mustache.render(
+    let rendered = mustache.render(
       fs.readFileSync(path.join(templateDir, template.fileName), 'utf-8'),
       { name: template.forceName ?? name, styleExtension: config.styleExtension, type: 'feature' }
     );
+
+    if (
+      (template.type === 'component' || template.type === 'page') &&
+      config.include.length > 0 &&
+      !config.include.includes('css')
+    ) {
+      rendered =
+        template.type === 'component'
+          ? rendered.substring(rendered.indexOf('interface'))
+          : rendered.substring(rendered.indexOf('export'));
+    }
 
     const fileName = `${template.forceName ?? template.type}.${template.extension}`;
     const filePath = includesPage
